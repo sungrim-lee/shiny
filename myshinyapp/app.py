@@ -6,10 +6,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-AB_PATH = 'https://github.com/sungrim-lee/sungrim-lee.github.io/blob/main/myshinyapp/'
 
 def load_data(path):
-    return pd.read_csv(AB_PATH+path)
+    return pd.read_csv(path)
 
 
 def open_json(filename):
@@ -24,16 +23,16 @@ def get_n_similar_cat(dic, b_cat, n=5):
 
 
 def get_business_info_from_id(b_id):
-    df = load_data('data/city_business.csv')
+    df = load_data('shiny_data/data/city_business.csv')
     b_info = df[df['business_id'] == b_id]
     return None if len(b_info) == 0 else b_info
 
 
 def get_refer_table(b_id, isHighRatings=True):
     if isHighRatings:
-        df = load_data('data/high_ratings.csv')
+        df = load_data('shiny_data/data/high_ratings.csv')
     else:
-        df = load_data('data/low_ratings.csv')
+        df = load_data('shiny_data/data/low_ratings.csv')
     return df[df['business_id']==b_id]
 
 
@@ -106,10 +105,10 @@ def server(input, output, session):
     def plot():
         b_id = input.text_id()
 
-        with open(AB_PATH+'sim.pkl', 'rb') as p:
+        with open('shiny_data/sim.pkl', 'rb') as p:
             sim_dict = pickle.load(p)
 
-        user_business_df = load_data('data/rating_history.csv')
+        user_business_df = load_data('shiny_data/data/rating_history.csv')
         b_info = get_business_info_from_id(b_id)
         if b_info is None:
             raise ValueError('No such Business ID')
