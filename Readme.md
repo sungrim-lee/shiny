@@ -1,2 +1,2 @@
 
-![Alt text](/shiny/test.jpg)
+![Alt text](test.jpg)
