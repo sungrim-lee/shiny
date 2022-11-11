@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-AB_PATH = 'https://github.com/sungrim-lee/sungrim-lee.github.io/tree/main/myapp/'
+AB_PATH = 'https://github.com/sungrim-lee/sungrim-lee.github.io/tree/main/shiny/'
 
 def load_data(path):
     return pd.read_csv(AB_PATH+path)
